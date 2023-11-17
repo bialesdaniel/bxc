@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "bxc.analysis.service";
+option java_multiple_files = true;
+
+import "getservicestatus.proto";
+
+service AnalysisService {
+  rpc GetServiceStatusRpc(GetServiceStatusRequest) returns (GetServiceStatusResponse){
+  }
+}
