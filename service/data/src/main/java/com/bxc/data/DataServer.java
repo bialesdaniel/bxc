@@ -1,23 +1,24 @@
-package bxc.analysis;
+package com.bxc.data;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import bxc.analysis.service.AnalysisService;
+import com.bxc.data.rpc.DataService;
+
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;
 
-public class AnalysisServer {
-  private static final Logger logger = Logger.getLogger(AnalysisServer.class.getName());
+public class DataServer {
+  private static final Logger logger = Logger.getLogger(DataServer.class.getName());
 
   private final int port;
   private final Server server;
 
-  public AnalysisServer(int port) throws IOException {
+  public DataServer(int port) throws IOException {
     this.port = port;
-    server = Grpc.newServerBuilderForPort(this.port, InsecureServerCredentials.create()).addService(new AnalysisService()).build();  
+    server = Grpc.newServerBuilderForPort(this.port, InsecureServerCredentials.create()).addService(new DataService()).build();  
   }
 
   /** Start serving requests. */
@@ -30,7 +31,7 @@ public class AnalysisServer {
         // Use stderr here since the logger may have been reset by its JVM shutdown hook.
         System.err.println("*** shutting down gRPC server since JVM is shutting down");
         try {
-          AnalysisServer.this.stop();
+          DataServer.this.stop();
         } catch (InterruptedException e) {
           e.printStackTrace(System.err);
         }
@@ -56,7 +57,7 @@ public class AnalysisServer {
   }
 
   public static void main(String[] args) throws Exception {
-    AnalysisServer server = new AnalysisServer(9870);
+    DataServer server = new DataServer(9870);
     server.start();
     server.blockUntilShutdown();
   }
