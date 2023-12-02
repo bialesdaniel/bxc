@@ -2,9 +2,9 @@ package com.bxc.data.rpc;
 
 import io.grpc.stub.StreamObserver;
 
-import com.bxc.data.DataServiceGrpc;
-import com.bxc.data.gethelloworld.GetHelloWorldRequest;
-import com.bxc.data.gethelloworld.GetHelloWorldResponse;
+import com.bxc.data.rpc.DataServiceGrpc;
+import com.bxc.data.rpc.gethelloworld.GetHelloWorldRequest;
+import com.bxc.data.rpc.gethelloworld.GetHelloWorldResponse;
 
 public final class DataService
     extends DataServiceGrpc.DataServiceImplBase {

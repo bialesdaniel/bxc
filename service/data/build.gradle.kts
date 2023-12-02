@@ -19,6 +19,8 @@ dependencies {
     implementation("io.grpc:grpc-protobuf:$grpcVersion")
     implementation("io.grpc:grpc-stub:$grpcVersion")
     implementation("io.grpc:grpc-netty-shaded:$grpcVersion")
+    implementation("io.grpc:grpc-services:$grpcVersion")
+    implementation("io.perfmark:perfmark-api:0.26.0")
 
     if (JavaVersion.current().isJava9Compatible()) {
         // Workaround for @javax.annotation.Generated
@@ -31,26 +33,19 @@ dependencies {
     testImplementation("io.grpc:grpc-testing:$grpcVersion")
 }
 
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:$protocVersion"
-    }
-    plugins {
-        id("grpc") {
-            artifact = "io.grpc:protoc-gen-grpc-java:$grpcVersion"
-        }
-    }
-    generateProtoTasks {
-        all().forEach {
-            it.plugins {
-                create("grpc")
-            }
-        }
-    }
-}
-
 tasks.named<Test>("test") {
     testLogging.showStandardStreams = true
+}
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "com.bxc.data.DataServer"
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE    
+
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
+    }
 }
 
 sourceSets {
@@ -61,6 +56,10 @@ sourceSets {
         java {
             srcDirs("build/generated/source/proto/main/grpc")
             srcDirs("build/generated/source/proto/main/java")
+
+            // For docker build.
+            srcDirs("proto/grpc")
+            srcDirs("proto/java")
         }
     }
     test {

@@ -1,7 +1,7 @@
 package com.bxc.data.rpc;
 
-import com.bxc.data.gethelloworld.GetHelloWorldRequest;
-import com.bxc.data.gethelloworld.GetHelloWorldResponse;
+import com.bxc.data.rpc.gethelloworld.GetHelloWorldRequest;
+import com.bxc.data.rpc.gethelloworld.GetHelloWorldResponse;
 
 public final class GetHelloWorldRpc {
   static public GetHelloWorldResponse execute(GetHelloWorldRequest request) {

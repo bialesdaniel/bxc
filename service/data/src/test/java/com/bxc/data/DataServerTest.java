@@ -10,9 +10,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import com.bxc.data.gethelloworld.GetHelloWorldRequest;
-import com.bxc.data.gethelloworld.GetHelloWorldResponse;
+import com.bxc.data.rpc.gethelloworld.GetHelloWorldRequest;
+import com.bxc.data.rpc.gethelloworld.GetHelloWorldResponse;
 import com.bxc.data.rpc.DataService;
+import com.bxc.data.rpc.DataServiceGrpc;
 
 @RunWith(JUnit4.class)
 public class DataServerTest {

@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.bxc.data.gethelloworld.GetHelloWorldRequest;
-import com.bxc.data.gethelloworld.GetHelloWorldResponse;
+import com.bxc.data.rpc.gethelloworld.GetHelloWorldRequest;
+import com.bxc.data.rpc.gethelloworld.GetHelloWorldResponse;
 
 import io.grpc.internal.testing.StreamRecorder;
 
