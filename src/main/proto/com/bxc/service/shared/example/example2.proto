@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package service.shared.example;
+
+option java_package = "com.bxc.service.shared.example";
+option java_multiple_files = true;
+
+message Example2 {}

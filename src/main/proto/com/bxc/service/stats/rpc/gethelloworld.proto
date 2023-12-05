@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package service.stats.rpc;
+
+option java_package = "com.bxc.service.stats.rpc.gethelloworld";
+option java_multiple_files = true;
+
+import "example.proto";
+import "example2.proto";
+
+message GetHelloWorldRequest {}
+
+message GetHelloWorldResponse {
+  string message = 1;
+  service.shared.example.Example example = 2;
+  service.shared.example.Example2 example_2 = 3;
+}
